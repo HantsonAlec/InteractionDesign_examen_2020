@@ -26,12 +26,12 @@
 	--global-color-neutral-xxx-dark: #232226;
 	--global-color-neutral-xxxx-dark: #17161a;
 	/* fonts */
-
+	--global-fontWeight-semiBold: 600;
 	/* shadows */
 	--global-input-focus-boxShadowSpread: 0 0 0 3px;
 	--global-card-boxShadowColor: #17161a0a;
 	/* borders */
-
+	--global-borderRadius: 8px;
 	/* transitions */
 	--global-transitionEasing-out: ease-out;
 	--global-transitionEasing-out-cubic: cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -48,6 +48,15 @@
 	--global-input-hover-borderColor: var(--global-color-neutral-x-light);
 	--global-input-focus-borderColor: var(--global-color-alpha-x-dark);
 	--global-input-focus-boxShadowColor: var(--global-color-alpha-dark-transparant);
+
+	/* Whitespace */
+	--global-baseline: 8px;
+	--global-whitespace-xxs: var(--global-baseline);
+	--global-whitespace-xs: calc(var(--global-baseline) * 2); /*16*/
+	--global-whitespace-sm: calc(var(--global-baseline) * 3); /*24*/
+	--global-whitespace-md: calc(var(--global-baseline) * 4); /*32*/
+	--global-whitespace-lg: calc(var(--global-baseline) * 5); /*40*/
+	--global-whitespace-xl: calc(var(--global-baseline) * 6); /*48*/
 }
 @media (prefers-color-scheme: dark) {
 	:root {
@@ -258,6 +267,14 @@ input:disabled {
 	position: relative;
 	padding: 24px 24px 0;
 }
+.o-row--form {
+	min-height: 100vh;
+	display: -webkit-flex;
+	display: -ms-flex;
+	display: flex;
+	-ms-align-items: center;
+	align-items: center;
+}
 
 /* size modifiers */
 
@@ -294,7 +311,7 @@ input:disabled {
 .o-container {
 	margin-left: auto;
 	margin-right: auto;
-	max-width: 79.5em; /* 79.5 * 16px = 1272 */
+	max-width: 32rem;
 	width: 100%;
 }
 
@@ -372,7 +389,31 @@ input:disabled {
 /*------------------------------------*\
 #COMPONENTS
 \*------------------------------------*/
+/*
+    Component: Card
+    ---
+    Card with box shadow
+*/
 
+.c-card {
+	--card-borderRadius: var(--global-borderRadius);
+	background-color: var(--card-backgroundColor, var(--global-color-neutral-xxxx-light));
+	margin-bottom: var(--global-whitespace-xs);
+	border-radius: var(--card-borderRadius, var(--global-borderRadius));
+	box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.075);
+	overflow: hidden;
+}
+@media (prefers-color-scheme: dark) {
+	.c-card {
+		--card-backgroundColor: var(--global-color-neutral-xxx-dark);
+	}
+}
+.c-card__title {
+	font-size: 1.5rem;
+	line-height: 2rem;
+	font-weight: var(--global-fontWeight-semiBold);
+	margin-bottom: var(--global-baseline);
+}
 /*------------------------------------*\
 #UTILITIES
 \*------------------------------------*/
