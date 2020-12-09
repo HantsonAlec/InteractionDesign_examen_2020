@@ -9,10 +9,10 @@
 :root {
 	/* colors */
 	--global-color-alpha-transparant: #8b33fb80;
-	--global-color-alpha: #8b33fb;
+	--global-color-alpha-x-dark: #8b33fb;
 	--global-color-alpha-dark: #6a00fd;
 	--global-color-alpha-dark-transparant: #6a00fd48;
-	--global-color-alpha-x-dark: #4e00ea;
+	--global-color-alpha: #4e00ea;
 
 	--global-color-neutral-xxxx-light: #ffffff;
 	--global-color-neutral-xxx-light: #f6f5f7;
@@ -48,6 +48,7 @@
 	--global-input-hover-borderColor: var(--global-color-neutral-x-light);
 	--global-input-focus-borderColor: var(--global-color-alpha-x-dark);
 	--global-input-focus-boxShadowColor: var(--global-color-alpha-dark-transparant);
+	--global-radio-focus-color: var(--global-color-alpha-x-dark);
 
 	/* Whitespace */
 	--global-baseline: 8px;
@@ -60,6 +61,8 @@
 }
 @media (prefers-color-scheme: dark) {
 	:root {
+		--global-color-alpha: var(--global-color-alpha-x-dark);
+
 		--global-page-color: var(--global-color-neutral-xxxx-light);
 		--global-page-backgroundColor: var(--global-color-neutral-xxxx-dark);
 		--global-label-color: var(--global-color-neutral-x-light);
@@ -436,7 +439,7 @@ input:disabled {
 	--custom-option-focus-borderColor: var(--global-input-focus-borderColor);
 	--custom-option-focus-boxShadowColor: var(--global-input-focus-boxShadowColor);
 	--custom-option-focus-boxShadow: var(--global-input-focus-boxShadowSpread) var(--custom-option-focus-boxShadowColor);
-	--custom-option__symbol-fill: var(--global-color-alpha);
+	--custom-option__symbol-fill: var(--global-color-neutral-xxxx-light);
 	--custom-option-transition: var(--global-transitionDuration-alpha) var(--global-transitionEasing-out);
 	display: flex;
 	align-items: center;
@@ -493,15 +496,23 @@ input:disabled {
 
 .c-option--hidden:focus + .c-custom-option,
 .c-option--hidden:active + .c-custom-option {
+	--custom-option-background: var(--global-color-alpha);
 	--custom-option-borderColor: var(--custom-option-focus-borderColor);
 	--custom-option-boxShadow: var(--custom-option-focus-boxShadow);
 }
-
+.c-option--hidden:checked + .c-custom-option {
+	--custom-option-background: var(--global-color-alpha);
+}
 /* checked state */
 
 .c-option--hidden:checked + .c-custom-option .c-custom-option__symbol {
 	opacity: 1; /* Show the symbol when the invisible checkbox/radio button is checked */
 	transform: scale(1);
+}
+@media (prefers-color-scheme: dark) {
+	.c-custom-option {
+		--custom-option-background: var(--global-color-neutral-xx-dark);
+	}
 }
 /*------------------------------------*\
 #UTILITIES
