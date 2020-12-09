@@ -475,6 +475,33 @@ input:disabled {
 .c-submit:focus {
 	--custom-option-focus-boxShadow: var(--global-input-focus-boxShadowSpread) var(--global-input-focus-boxShadowColor);
 }
+.c-back {
+	--global-custom-color: var(--global-color-neutral-xxxx-dark);
+	border: none;
+	background-color: transparent;
+}
+.c-back_symbol {
+	--custom-back-color: var(--global-color-neutral-xxxx-dark);
+	stroke-width: 2px;
+	stroke: var(--custom-back-color);
+}
+@media (prefers-color-scheme: dark) {
+	.c-back_symbol {
+		--custom-back-color: var(--global-color-neutral-x-light);
+	}
+}
+/*
+    Progress
+    ---
+    Progress bottom page
+*/
+.c-progress_border {
+	--custom-progress-background: var(--global-color-neutral-x-light);
+	display: inline-block;
+	height: 0.5rem;
+	width: 348px;
+	background-color: var(--custom-progress-background);
+}
 /*
     Custom option
     ---
