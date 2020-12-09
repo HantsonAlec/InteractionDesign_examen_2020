@@ -410,7 +410,8 @@ input:disabled {
 	padding-right: var(--global-whitespace-md);
 }
 @media (prefers-color-scheme: dark) {
-	.c-card {
+	.c-card,
+	.c-card-question_input {
 		--card-backgroundColor: var(--global-color-neutral-xxx-dark);
 	}
 }
@@ -431,7 +432,7 @@ input:disabled {
 	color: var(--global-input-color);
 	border: 1px solid var(--global-input-borderColor);
 	box-shadow: var(--custom-option-boxShadow, 0);
-	background-color: var(--global-input-backgroundColor);
+	background-color: var(--card-backgroundColor, var(--global-color-neutral-xxxx-light));
 	height: 10rem;
 	appearance: none;
 	-webkit-appearance: none;
@@ -496,19 +497,25 @@ input:disabled {
     Progress bottom page
 */
 .c-progress {
+	color: var(--global-color-neutral-dark);
 	padding-top: var(--global-whitespace-xs);
 	font-size: 0.875rem;
-	border-top: 1px solid var(--global-color-neutral-xxxx-dark);
+	border-top: 1px solid var(--global-color-neutral-x-light);
 	display: flex;
 	align-items: baseline;
 	justify-content: space-between;
+}
+@media (prefers-color-scheme: dark) {
+	.c-progress {
+		border-top: 1px solid var(--global-color-neutral-xxxx-dark);
+	}
 }
 .c-progress_border {
 	border-radius: 1.875rem;
 	--custom-progress-background: var(--global-color-neutral-x-light);
 	display: inline-block;
 	height: 0.5rem;
-	width: 21.75rem;
+	width: 70%;
 	max-width: 21.75rem;
 	background-color: var(--custom-progress-background);
 }
@@ -517,7 +524,7 @@ input:disabled {
 	position: absolute;
 	display: inline-block;
 	height: 0.5rem;
-	width: 60%;
+	width: 40%;
 	max-width: 21.75rem;
 	background-color: var(--global-color-alpha);
 }
@@ -552,11 +559,9 @@ input:disabled {
 	height: 16px;
 	margin-right: 8px;
 	background: var(--custom-option-background);
-	border: 1px solid var(--custom-option-borderColor);
 	transition: all var(--custom-option-transition);
 	box-shadow: var(--custom-option-boxShadow, 0);
 }
-
 .c-custom-option__fake {
 	--custom-option-background: var(--global-color-neutral-x-light);
 	display: inline-block;
@@ -569,7 +574,7 @@ input:disabled {
 	margin-bottom: calc(var(--global-baseline) * 1.5);
 	border-radius: calc(var(--global-borderRadius) * 2);
 	color: var(--custom-option-color);
-	border: 1px solid var(--custom-option-borderColor);
+	border: none;
 	transition: all var(--custom-option-transition);
 	box-shadow: var(--custom-option-boxShadow, 0);
 }
