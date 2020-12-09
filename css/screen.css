@@ -43,7 +43,7 @@
 	--global-label-color: var(--global-color-neutral-xx-dark);
 	--global-placeholder-color: var(--global-color-neutral);
 	--global-input-backgroundColor: var(--global-color-neutral-xxxx-light);
-	--global-input-color: var(--global-color-neutral-x-dark);
+	--global-input-color: var(--global-color-neutral-xx-dark);
 	--global-input-borderColor: var(--global-color-neutral-x-light);
 	--global-input-hover-borderColor: var(--global-color-neutral-x-light);
 	--global-input-focus-borderColor: var(--global-color-alpha-x-dark);
@@ -423,6 +423,26 @@ input:disabled {
 .c-card_question {
 	font-weight: var(--global-fontWeight-semiBold);
 }
+.c-card-question_change {
+	display: flex;
+	flex-direction: column;
+}
+.c-card-question_input {
+	color: var(--global-input-color);
+	border: 1px solid var(--global-input-borderColor);
+	box-shadow: var(--custom-option-boxShadow, 0);
+	background-color: var(--global-input-backgroundColor);
+	height: 10rem;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	outline: none;
+}
+.c-card-question_input:focus,
+.c-card-question_input:active {
+	--global-input-borderColor: var(--custom-option-focus-borderColor);
+	--custom-option-boxShadow: var(--custom-option-focus-boxShadow);
+}
 /*
     Custom option
     ---
@@ -432,6 +452,7 @@ input:disabled {
 /* Hide the actual input with the class .o-hide-accessible */
 
 .c-custom-option {
+	--custom-option-color: var(--global-input-color);
 	--custom-option-background: var(--global-color-neutral-x-light);
 	--custom-option-borderRadius: var(--global-borderRadius);
 	--custom-option-borderColor: var(--global-input-borderColor);
@@ -461,14 +482,19 @@ input:disabled {
 .c-custom-option__fake {
 	--custom-option-background: var(--global-color-neutral-x-light);
 	display: inline-block;
+}
+.c-custom-option__fake-input--checkbox {
 	width: fit-content;
 	background-color: var(--custom-option-background);
 	padding: var(--global-baseline) var(--global-whitespace-xs);
 	margin-right: calc(var(--global-baseline) * 1.5);
 	margin-bottom: calc(var(--global-baseline) * 1.5);
 	border-radius: calc(var(--global-borderRadius) * 2);
+	color: var(--custom-option-color);
+	border: 1px solid var(--custom-option-borderColor);
+	transition: all var(--custom-option-transition);
+	box-shadow: var(--custom-option-boxShadow, 0);
 }
-
 .c-custom-option__fake-input--radio {
 	border-radius: 100%;
 }
@@ -498,17 +524,20 @@ input:disabled {
 .c-custom-option:hover {
 	--custom-option-borderColor: var(--custom-option-hover-borderColor);
 }
-
+.c-custom-option:hover + .c-custom-option__fake-input--checkbox {
+	--custom-option-background: var(--global-color-neutral-light);
+}
 /* focused and active state */
 
 .c-option--hidden:focus + .c-custom-option,
 .c-option--hidden:active + .c-custom-option {
-	--custom-option-background: var(--global-color-alpha);
 	--custom-option-borderColor: var(--custom-option-focus-borderColor);
 	--custom-option-boxShadow: var(--custom-option-focus-boxShadow);
 }
+
 .c-option--hidden:checked + .c-custom-option {
 	--custom-option-background: var(--global-color-alpha);
+	--custom-option-color: white;
 }
 /* checked state */
 
